@@ -186,10 +186,7 @@ describe("animation target change threshold", () => {
 });
 
 describe("setDimLevelImmediate simulation", () => {
-    function setDimLevelImmediate(
-        state: AnimationState,
-        level: number
-    ): void {
+    function setDimLevelImmediate(state: AnimationState, level: number): void {
         state.frameId = null; // cancelAnimation
         state.currentLevel = clamp(level, 0, 1);
         state.targetLevel = state.currentLevel;
