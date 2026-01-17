@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Auto Dimmer Settings</title>
+        <link rel="stylesheet" href="popup.css" />
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>Auto Dimmer</h1>
+                <label class="switch main-toggle">
+                    <input type="checkbox" id="enabled" />
+                    <span class="slider"></span>
+                </label>
+            </header>
+
+            <section class="status-section">
+                <div class="status-row">
+                    <span class="label">Current site</span>
+                    <span id="currentSite" class="value">-</span>
+                </div>
+                <div class="status-row">
+                    <span class="label">Page brightness</span>
+                    <span id="pageBrightness" class="value">-</span>
+                </div>
+                <div class="status-row">
+                    <span class="label">Current dim level</span>
+                    <span id="currentDim" class="value">-</span>
+                </div>
+            </section>
+
+            <section class="settings-section">
+                <h2>Global Settings</h2>
+
+                <div class="setting">
+                    <label for="dimIntensity">Dim Intensity</label>
+                    <div class="slider-container">
+                        <input type="range" id="dimIntensity" min="0" max="100" value="30" />
+                        <span id="dimIntensityValue" class="slider-value">30%</span>
+                    </div>
+                </div>
+
+                <div class="setting">
+                    <label for="brightnessThreshold">Brightness Threshold</label>
+                    <div class="slider-container">
+                        <input type="range" id="brightnessThreshold" min="0" max="100" value="60" />
+                        <span id="brightnessThresholdValue" class="slider-value">60%</span>
+                    </div>
+                    <p class="hint">Pages brighter than this will be dimmed</p>
+                </div>
+
+                <div class="setting">
+                    <label for="dynamicMode">Dynamic Mode</label>
+                    <label class="switch">
+                        <input type="checkbox" id="dynamicMode" checked />
+                        <span class="slider"></span>
+                    </label>
+                    <p class="hint">Continuously adjust dimming based on page content</p>
+                </div>
+
+                <div class="setting">
+                    <label for="smoothing">Smooth Transitions</label>
+                    <label class="switch">
+                        <input type="checkbox" id="smoothing" checked />
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting" id="smoothingDurationSetting">
+                    <label for="smoothingDuration">Transition Duration</label>
+                    <div class="slider-container">
+                        <input
+                            type="range"
+                            id="smoothingDuration"
+                            min="100"
+                            max="2000"
+                            value="500"
+                            step="100"
+                        />
+                        <span id="smoothingDurationValue" class="slider-value">500ms</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="settings-section">
+                <h2>Site Settings</h2>
+
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="global">Global</button>
+                    <button class="tab-btn" data-tab="site">This Site</button>
+                </div>
+
+                <div id="globalTab" class="tab-content active">
+                    <p class="hint">Settings apply to all websites</p>
+                </div>
+
+                <div id="siteTab" class="tab-content">
+                    <div class="setting">
+                        <label for="siteEnabled">Enable for this site</label>
+                        <label class="switch">
+                            <input type="checkbox" id="siteEnabled" checked />
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting">
+                        <label for="siteDimIntensity">Dim Intensity</label>
+                        <div class="slider-container">
+                            <input
+                                type="range"
+                                id="siteDimIntensity"
+                                min="0"
+                                max="100"
+                                value="30"
+                            />
+                            <span id="siteDimIntensityValue" class="slider-value">30%</span>
+                        </div>
+                    </div>
+
+                    <button id="clearSiteSettings" class="btn btn-secondary">
+                        Reset to Global
+                    </button>
+                </div>
+            </section>
+
+            <section class="settings-section">
+                <h2>Whitelist / Blacklist</h2>
+
+                <div class="list-section">
+                    <h3>Blacklist (never dim)</h3>
+                    <div id="blacklistItems" class="list-items"></div>
+                    <div class="add-item">
+                        <input type="text" id="blacklistInput" placeholder="example.com" />
+                        <button id="addBlacklist" class="btn btn-small">Add</button>
+                    </div>
+                    <button id="blacklistCurrentSite" class="btn btn-secondary">
+                        Add Current Site
+                    </button>
+                </div>
+
+                <div class="list-section">
+                    <h3>Whitelist (always dim)</h3>
+                    <div id="whitelistItems" class="list-items"></div>
+                    <div class="add-item">
+                        <input type="text" id="whitelistInput" placeholder="example.com" />
+                        <button id="addWhitelist" class="btn btn-small">Add</button>
+                    </div>
+                    <button id="whitelistCurrentSite" class="btn btn-secondary">
+                        Add Current Site
+                    </button>
+                </div>
+            </section>
+
+            <section class="settings-section">
+                <h2>Manual Control</h2>
+                <div class="setting">
+                    <label for="manualDim">Override Dim Level</label>
+                    <div class="slider-container">
+                        <input type="range" id="manualDim" min="0" max="100" value="0" />
+                        <span id="manualDimValue" class="slider-value">0%</span>
+                    </div>
+                    <button id="resetManual" class="btn btn-secondary">Reset to Auto</button>
+                </div>
+            </section>
+        </div>
+
+        <script src="../dist/popup.js"></script>
+    </body>
+</html>

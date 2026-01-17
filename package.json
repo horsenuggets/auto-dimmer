@@ -1,0 +1,39 @@
+{
+    "name": "auto-dimmer",
+    "version": "0.0.1",
+    "description": "Chrome extension that automatically dims bright webpages based on visual brightness detection",
+    "type": "module",
+    "scripts": {
+        "build": "npm run build:content && npm run build:background && npm run build:popup",
+        "build:content": "esbuild src/content.ts --bundle --outfile=dist/content.js --format=iife --target=chrome100",
+        "build:background": "esbuild src/background.ts --bundle --outfile=dist/background.js --format=iife --target=chrome100",
+        "build:popup": "esbuild src/popup.ts --bundle --outfile=dist/popup.js --format=iife --target=chrome100",
+        "watch": "npm run build && (npm run build:content -- --watch & npm run build:background -- --watch & npm run build:popup -- --watch)",
+        "typecheck": "tsc --noEmit",
+        "format": "prettier --write \"**/*.{ts,json,html,css}\"",
+        "format:check": "prettier --check \"**/*.{ts,json,html,css}\"",
+        "generate-icons": "node scripts/generate-icons.js",
+        "test": "tsx scripts/run-tests.ts",
+        "test:e2e": "tsx scripts/e2e-tests.ts"
+    },
+    "devDependencies": {
+        "@types/chrome": "^0.0.268",
+        "@types/node": "^25.0.9",
+        "@types/puppeteer": "^5.4.7",
+        "esbuild": "^0.20.2",
+        "prettier": "^3.2.5",
+        "puppeteer": "^24.35.0",
+        "tsx": "^4.21.0",
+        "typescript": "^5.4.5"
+    },
+    "optionalDependencies": {
+        "sharp": "^0.33.2"
+    },
+    "prettier": {
+        "tabWidth": 4,
+        "semi": true,
+        "singleQuote": false,
+        "trailingComma": "es5",
+        "printWidth": 100
+    }
+}
