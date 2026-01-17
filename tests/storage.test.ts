@@ -110,7 +110,7 @@ describe("isStateExpired", () => {
         const state: SiteState = {
             lastDimLevel: 0.5,
             lastBrightness: 0.8,
-            timestamp: Date.now() - (23 * 60 * 60 * 1000), // 23 hours ago
+            timestamp: Date.now() - 23 * 60 * 60 * 1000, // 23 hours ago
         };
         expect(isStateExpired(state)).toBe(false);
     });
@@ -119,7 +119,7 @@ describe("isStateExpired", () => {
         const state: SiteState = {
             lastDimLevel: 0.5,
             lastBrightness: 0.8,
-            timestamp: Date.now() - (25 * 60 * 60 * 1000), // 25 hours ago
+            timestamp: Date.now() - 25 * 60 * 60 * 1000, // 25 hours ago
         };
         expect(isStateExpired(state)).toBe(true);
     });
@@ -146,7 +146,7 @@ describe("isStateExpired", () => {
         const state: SiteState = {
             lastDimLevel: 0.5,
             lastBrightness: 0.8,
-            timestamp: Date.now() - (7 * 24 * 60 * 60 * 1000), // 7 days ago
+            timestamp: Date.now() - 7 * 24 * 60 * 60 * 1000, // 7 days ago
         };
         expect(isStateExpired(state)).toBe(true);
     });

@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - main
+      - release
 
 jobs:
   branch-naming:
@@ -13,7 +14,14 @@ jobs:
       - name: Check branch name format
         run: |
           BRANCH="${{ github.head_ref }}"
-          echo "Checking branch name: $BRANCH"
+          BASE="${{ github.base_ref }}"
+          echo "Checking branch name: $BRANCH (targeting $BASE)"
+
+          # Allow pre-release branch for PRs to release
+          if [[ "$BRANCH" == "pre-release" && "$BASE" == "release" ]]; then
+            echo "Branch 'pre-release' is allowed for release PRs."
+            exit 0
+          fi
 
           # Must start with a valid prefix
           if [[ ! "$BRANCH" =~ ^(feature|bugfix|hotfix|chore|docs|refactor|test)/ ]]; then

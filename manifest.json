@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Auto Dimmer",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Automatically dims bright webpages based on visual brightness detection",
     "permissions": ["storage", "activeTab", "scripting"],
     "host_permissions": ["<all_urls>"],

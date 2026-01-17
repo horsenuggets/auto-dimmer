@@ -86,7 +86,8 @@ function checkAndDim(): void {
             smoothedBrightness = rawBrightness;
         } else {
             smoothedBrightness =
-                BRIGHTNESS_SMOOTHING * rawBrightness + (1 - BRIGHTNESS_SMOOTHING) * smoothedBrightness;
+                BRIGHTNESS_SMOOTHING * rawBrightness +
+                (1 - BRIGHTNESS_SMOOTHING) * smoothedBrightness;
         }
 
         // Calculate dim amount
