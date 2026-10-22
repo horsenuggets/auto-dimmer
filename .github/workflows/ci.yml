@@ -12,8 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check branch name format
+        env:
+          BRANCH: ${{ github.head_ref }}
         run: |
-          BRANCH="${{ github.head_ref }}"
           BASE="${{ github.base_ref }}"
           echo "Checking branch name: $BRANCH (targeting $BASE)"
 
