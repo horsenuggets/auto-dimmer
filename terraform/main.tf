@@ -36,18 +36,18 @@ locals {
 
     # Must match the job `name:` fields of every workflow that runs on PRs to main.
     main_checks = [
-        "Build",
-        "Check formatting",
-        "Run tests",
-        "Validate branch name"
+        "build",
+        "check-formatting",
+        "run-tests",
+        "validate-branch-name"
     ]
 
     # Must match the job `name:` fields of every workflow that runs on PRs to release.
     release_checks = [
-        "Build",
-        "Check formatting",
-        "Run tests",
-        "Validate branch name"
+        "build",
+        "check-formatting",
+        "run-tests",
+        "validate-branch-name"
     ]
 }
 
