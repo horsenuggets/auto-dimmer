@@ -1,4 +1,4 @@
-name: Release
+name: Release / CI
 
 on:
   pull_request:
@@ -11,8 +11,8 @@ permissions:
   contents: write
 
 jobs:
-  release:
-    name: Create release
+  create-release:
+    name: create-release
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
     steps:
@@ -33,7 +33,7 @@ jobs:
 
       - name: Get version
         id: version
-        run: echo "version=$(cat VERSION)" >> $GITHUB_OUTPUT
+        run: echo "version=$(cat VERSION)" >> "$GITHUB_OUTPUT"
 
       - name: Create extension zip
         run: |
@@ -47,7 +47,7 @@ jobs:
             README.md
 
       - name: Create GitHub release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.version.outputs.version }}
           name: ${{ steps.version.outputs.version }}
