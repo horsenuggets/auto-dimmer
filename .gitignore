@@ -3,3 +3,8 @@
 dist/
 node_modules/
 /TODO.md
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
